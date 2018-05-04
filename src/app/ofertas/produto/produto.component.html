@@ -1,0 +1,39 @@
+<div *ngIf ="produto">
+  <!-- Property Binding-->
+  <!-- Dados fornecidos pelo meu component -->
+  {{produto.nome}}<br>
+  Valor Base: <span>{{produto.valorBase}}</span><br>
+  Lance Minimo:<span>{{produto.incOmissao}}</span><br>
+  <!-- 
+    Aqui é uma area do meu component que só é renderizada em função da minha propriedade valorAtual for 
+    diferente de 0(Zero) controlando a renderização da minha pagiana.
+   -->
+  <div *ngIf="produto.valorAtual">
+    Valor Atual:<span>{{produto.valorAtual}}</span>
+  </div>
+  <!-- 
+    Aqui é uma area do meu component que só é renderizada em função da minha propriedade Estado.
+  -->
+  <div [ngSwitch]="produto.estado">
+  <!-- 
+    Caso o produto esteja a aberto a negociações ele exibe o formulario de 
+  -->
+    <div *ngSwitchCase = "'ABERTO'">
+        <form action="#">
+            <div class="form-group">
+              <label for="InputOferta">Oferta</label>
+              <input type="text" (keypress)="AllowNumbersOnly($event)" class="form-control" id="ofertaDeProduto" aria-describedby="ofertaProduto" placeholder="Faça sua Oferta aqui.">
+              <small id="emailHelp" class="form-text text-muted">Ofertas devem ser maiores ou iguais ao valor atual somado do valor de incremento</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Ofertar</button>
+          </form>
+    </div>
+    <div *ngSwitchCase = "'FECHADO'">
+        <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Negociações Encerradas</button>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid" *ngIf = "!produto" >
+  Produto não encontrado.
+</div>

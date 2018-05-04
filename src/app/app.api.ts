@@ -1,0 +1,1 @@
+export const LEILAO_API = 'http://localhost:8080'
