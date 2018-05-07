@@ -4,6 +4,8 @@ import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {LEILAO_API} from '../app.api';
 import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/catch'
+import { ErrorHandler } from "../app.erro-handler";
 
 @Injectable()
 export class ProdutoService{
@@ -11,6 +13,6 @@ export class ProdutoService{
 
     buscaProdutoNome(nome:string):Observable<Produto[]> {
          return this.http.get(`${LEILAO_API}/leilao/?nome=${nome}`)
-    .map(response => <Produto[]>response.json());
+    .map(response => <Produto[]>response.json()).catch(ErrorHandler.handleError);
     }
 }
