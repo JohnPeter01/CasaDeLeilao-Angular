@@ -1,15 +1,37 @@
-<form>
+{{form.valid}}
+{{form.value | json }}
+<form #form = "ngForm" >
     <div class="form-group">
-      <label for="nomeProduto">nome</label>
-      <input type="text" class="form-control" id="nomeProduto" aria-describedby="nomeProduto" placeholder="Entre o nome do produto.">
-    </div>
+        <label for="nomeProduto">Nome</label>
+        <input type="text" class="form-control" [class.is-valid] = "iptName.valid && (iptName.dirty||iptName.touched)" 
+                                                [class.is-invalid] = "!iptName.valid && (iptName.dirty||iptName.touched)" 
+                                                name="nomeProduto" aria-describedby="nomeProduto" placeholder="Entre o nome do produto." 
+                                                required #iptName ="ngModel" ngModel>
+        <div class="valid-feedback">OK</div>
+        <div class="invalid-feedback">Campo invalido</div>    
+    </div>    
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <label for="valorBase">Valor inicial</label>
+      <input type="text" class="form-control" [class.is-valid] = "iptValorBase.valid && (iptValorBase.dirty||iptValorBase.touched)"
+                                              [class.is-invalid] = "!iptValorBase.valid && (iptValorBase.dirty||iptValorBase.touched)" 
+                                              (keypress) = " AllowNumbersOnly($event)" name="valorBase" placeholder="Valor inicial do produto." required #iptValorBase ="ngModel" ngModel>
+      <div class="valid-feedback">OK</div>
+      <div class="invalid-feedback">Campo invalido</div>   
     </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+    <div class="form-group">
+      <label for="valIncremento">Lance Minimo:</label>
+      <input type="text" class="form-control" [class.is-valid] = "iptvalorIncremento.valid && (iptvalorIncremento.dirty||iptvalorIncremento.touched)" 
+                                              [class.is-invalid] = "!iptvalorIncremento.valid && (iptvalorIncremento.dirty||iptvalorIncremento.touched)" 
+                                              (keypress) = " AllowNumbersOnly($event)" name="valIncremento" placeholder="Valor a ser incrementado a cada oferta." required #iptvalorIncremento ="ngModel" ngModel>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="form-group">
+      <label for="valIncremento">Data:</label>
+      <input type="date" class="form-control" [class.is-valid] = "iptDataFinal.valid && (iptDataFinal.dirty||iptDataFinal.touched)"  
+                                               name="dataFinal" placeholder="Valor a ser incrementado a cada oferta."  #iptDataFinal ="ngModel" ngModel>
+      <div class="valid-feedback">OK</div>
+    </div>
+
+    <button type="submit" (click)="RealizaCadastro(form.value)" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
   </form>

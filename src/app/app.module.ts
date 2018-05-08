@@ -12,8 +12,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ProdutoService } from "./ofertas/produto.service";
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { importType } from '@angular/compiler/src/output/output_ast';
 import { RouterModule } from '@angular/router';
+import {FormsModule} from '@angular/forms';
 import {ROUTES} from './app.routes';
 
 @NgModule({
@@ -24,12 +24,13 @@ import {ROUTES} from './app.routes';
     OfertasComponent,
     ProdutoComponent,
     CadastroComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ProdutoService],
