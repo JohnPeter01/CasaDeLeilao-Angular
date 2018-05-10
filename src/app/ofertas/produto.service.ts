@@ -11,8 +11,8 @@ import { ErrorHandler } from "../app.erro-handler";
 export class ProdutoService{
     constructor(private http: Http){}
 
-    buscaProdutoNome(nome:string):Observable<Produto[]> {
-         return this.http.get(`${LEILAO_API}/leilao/?nome=${nome}`)
+    buscaProdutoNome():Observable<Produto[]> {
+         return this.http.get(`${LEILAO_API}/produtos`)
     .map(response => <Produto[]>response.json()).catch(ErrorHandler.handleError);
     }
 }

@@ -12,7 +12,7 @@ export class OfertasComponent implements OnInit {
   constructor(private ProdutoService:ProdutoService) { }
 
   ngOnInit() {
-   this.ProdutoService.buscaProdutoNome('Produto')
+   this.ProdutoService.buscaProdutoNome()
    .subscribe(buscaProdutoNome => this.produtos = buscaProdutoNome)
   }
 

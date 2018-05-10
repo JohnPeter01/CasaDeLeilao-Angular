@@ -15,6 +15,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {ROUTES} from './app.routes';
+import { CadastroService } from './cadastro/cadastro.service';
+import { BuscaComponent } from './busca/busca.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {ROUTES} from './app.routes';
     ProdutoComponent,
     CadastroComponent,
     FooterComponent,
+    BuscaComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import {ROUTES} from './app.routes';
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ProdutoService],
+  providers: [ProdutoService,CadastroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

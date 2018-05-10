@@ -1,36 +1,41 @@
-{{form.valid}}
-{{form.value | json }}
 <form #form = "ngForm" >
     <div class="form-group">
-        <label for="nomeProduto">Nome</label>
+        <label for="nome">Nome</label>
         <input type="text" class="form-control" [class.is-valid] = "iptName.valid && (iptName.dirty||iptName.touched)" 
                                                 [class.is-invalid] = "!iptName.valid && (iptName.dirty||iptName.touched)" 
-                                                name="nomeProduto" aria-describedby="nomeProduto" placeholder="Entre o nome do produto." 
+                                                name="nome" aria-describedby="nome" placeholder="Entre o nome do produto." 
                                                 required #iptName ="ngModel" ngModel>
         <div class="valid-feedback">OK</div>
         <div class="invalid-feedback">Campo invalido</div>    
     </div>    
     <div class="form-group">
-      <label for="valorBase">Valor inicial</label>
-      <input type="text" class="form-control" [class.is-valid] = "iptValorBase.valid && (iptValorBase.dirty||iptValorBase.touched)"
-                                              [class.is-invalid] = "!iptValorBase.valid && (iptValorBase.dirty||iptValorBase.touched)" 
-                                              (keypress) = " AllowNumbersOnly($event)" name="valorBase" placeholder="Valor inicial do produto." required #iptValorBase ="ngModel" ngModel>
+      <label for="valorAtual">Valor inicial</label>
+      <input type="text" class="form-control" [class.is-valid] = "iptValorAtual.valid && (iptValorAtual.dirty||iptValorAtual.touched)"
+                                              [class.is-invalid] = "!iptValorAtual.valid && (iptValorAtual.dirty||iptValorAtual.touched)" 
+                                              (keypress) = " AllowNumbersOnly($event)" name="valorAtual" placeholder="Valor inicial do produto." required #iptValorAtual ="ngModel" ngModel>
       <div class="valid-feedback">OK</div>
       <div class="invalid-feedback">Campo invalido</div>   
     </div>
 
     <div class="form-group">
-      <label for="valIncremento">Lance Minimo:</label>
-      <input type="text" class="form-control" [class.is-valid] = "iptvalorIncremento.valid && (iptvalorIncremento.dirty||iptvalorIncremento.touched)" 
-                                              [class.is-invalid] = "!iptvalorIncremento.valid && (iptvalorIncremento.dirty||iptvalorIncremento.touched)" 
-                                              (keypress) = " AllowNumbersOnly($event)" name="valIncremento" placeholder="Valor a ser incrementado a cada oferta." required #iptvalorIncremento ="ngModel" ngModel>
+      <label for="incOmissao">Lance Minimo:</label>
+      <input type="text" class="form-control" [class.is-valid] = "iptincOmissao.valid && (iptincOmissao.dirty||iptincOmissao.touched)" 
+                                              [class.is-invalid] = "!iptincOmissao.valid && (iptincOmissao.dirty||iptincOmissao.touched)" 
+                                              (keypress) = " AllowNumbersOnly($event)" name="incOmissao" placeholder="Valor a ser incrementado a cada oferta." required #iptincOmissao ="ngModel" ngModel>
+    <div class="valid-feedback">OK</div>
+    <div class="invalid-feedback">Campo invalido</div> 
     </div>
 
     <div class="form-group">
       <label for="valIncremento">Data:</label>
-      <input type="date" class="form-control" [class.is-valid] = "iptDataFinal.valid && (iptDataFinal.dirty||iptDataFinal.touched)"  
-                                               name="dataFinal" placeholder="Valor a ser incrementado a cada oferta."  #iptDataFinal ="ngModel" ngModel>
+      <input type="datetime-local" class="form-control" [class.is-valid] = "iptlimiteVenda.valid && (iptlimiteVenda.dirty||iptlimiteVenda.touched)"  
+                                               name="limiteVenda" placeholder="Valor a ser incrementado a cada oferta."  #iptlimiteVenda ="ngModel" ngModel>
       <div class="valid-feedback">OK</div>
+    </div>
+
+    <div class="form-group">
+      <label for="foto">Envie sua foto</label>
+      <input type="file" id="foto" name ="foto" accept=".png, .jpg, .jpeg" (change)="onFileChange($event)">
     </div>
 
     <button type="submit" (click)="RealizaCadastro(form.value)" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>

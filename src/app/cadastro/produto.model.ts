@@ -1,10 +1,10 @@
 //Objeto modelo para o produto.
-export interface Produto{
+export class ProdutoCadastro{
     //Atributos Obrigatórios.
-    nome:string;
+    nomeProduto:string;
     valorAtual:number;
     incOmissao:number;
-    maiorOferta:number;
-    estado:string;
-    foto:string|any
+    limiteVenda:string;
+    foto:any;
 }
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cadastro } from './cadastro.model';
+import { ProdutoCadastro } from './produto.model';
 import {CadastroService} from './cadastro.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {CadastroService} from './cadastro.service';
   templateUrl: './cadastro.component.html'
 })
 export class CadastroComponent implements OnInit {
+
+hidden:any;
 
   constructor(private CadastroService:CadastroService) { }
 
@@ -20,7 +22,20 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  RealizaCadastro(cadastro:Cadastro){
-    this.CadastroService.realizaCadastro(cadastro).subscribe(() =>{console.log(`Cadastro concluido com sucesso.`)})
+  onFileChange(event) {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+          this.hidden = reader.result.split(',')[1]
+      };
+    }
+  }
+
+  RealizaCadastro(cadastro:ProdutoCadastro){
+   cadastro.foto = this.hidden;
+    cadastro.limiteVenda = cadastro.limiteVenda + ":00.00Z"
+    this.CadastroService.realizaCadastro(cadastro).subscribe(() =>{alert(`Cadastro concluido com sucesso.`)})
   }
 }
