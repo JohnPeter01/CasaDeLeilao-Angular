@@ -6,5 +6,6 @@ export interface Produto{
     incOmissao:number;
     maiorOferta:number;
     estado:string;
-    foto:string|any
+    foto:string|any;
+    id:number
 }

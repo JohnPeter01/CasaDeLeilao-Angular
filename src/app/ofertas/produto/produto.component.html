@@ -4,21 +4,22 @@
   {{produto.nome}}<br>
   Valor Atual: R$<span>{{produto.valorAtual}}</span><br>
   Lance Minimo: R$<span>{{produto.incOmissao}}</span><br>
-  <aside>
-    ()
-  </aside>
+  <div>
+    <img src = "data:image/jpg;base64,{{produto.foto}}" class="img-fluid" alt="responsive image">
+  </div>
   <div [ngSwitch]="produto.estado">
   <!-- 
     Caso o produto esteja a aberto a negociações ele exibe o formulario de 
   -->
     <div *ngSwitchCase = "'ABERTO'">
-        <form action="#">
+        <form>
             <div class="form-group">
               <label for="InputOferta">Maior Oferta: {{produto.Oferta}}</label>
-              <input type="text" (keypress)="AllowNumbersOnly($event)" class="form-control" id="ofertaDeProduto" aria-describedby="ofertaProduto" placeholder="Faça sua Oferta aqui.">
+              <input type="text" (keypress)="AllowNumbersOnly($event)" class="form-control" name="oferta" aria-describedby="ofertaProduto" placeholder="Faça sua Oferta aqui." #iptOferta = "ngModel" ngModel>
               <small id="emailHelp" class="form-text text-muted">Ofertas devem ser maiores ou iguais ao valor atual somado do valor de incremento</small>
             </div>
-            <button type="submit" class="btn btn-primary">Ofertar</button>
+            <button type="submit" (click)="RealizaOferta(iptOferta.value, produto.id)" class="btn btn-primary">Ofertar</button>
+            <button type="submit" (click)="RealizaIncremento(produto.id)" class="btn btn-primary">Ofertar por lance mínimo</button>
           </form>
     </div>
     <div *ngSwitchCase = "'FECHADO'">
