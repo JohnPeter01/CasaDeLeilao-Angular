@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoCadastro } from './produto.model';
-import {CadastroService} from './cadastro.service';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'fl-cadastro',
@@ -10,7 +10,7 @@ export class CadastroComponent implements OnInit {
 
 hidden:any;
 
-  constructor(private CadastroService:CadastroService) { }
+  constructor(private serverService:ServerService) { }
 
   ngOnInit() {
   }
@@ -36,6 +36,6 @@ hidden:any;
   RealizaCadastro(cadastro:ProdutoCadastro){
    cadastro.foto = this.hidden;
     cadastro.limiteVenda = cadastro.limiteVenda + ":00.00Z"
-    this.CadastroService.realizaCadastro(cadastro).subscribe(() =>{alert(`Cadastro concluido com sucesso.`)})
+    this.serverService.realizaCadastro(cadastro).subscribe(() =>{alert(`Cadastro concluido com sucesso.`)})
   }
 }

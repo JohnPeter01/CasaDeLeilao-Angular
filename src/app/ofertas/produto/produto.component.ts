@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Produto } from './produto.model';
 import { Ofertas } from '../ofertas.model';
-import { ProdutoService } from '../produto.service';
+import { ServerService } from '../../server.service';
 import { Incremento } from '../incremento.model';
 import { OfertasComponent } from '../ofertas.component';
 
@@ -15,7 +15,7 @@ export class ProdutoComponent implements OnInit {
   incremento:Incremento;
   oferta:Ofertas; 
   
-  constructor(private ProdutoService:ProdutoService) { }
+  constructor(private ServerService:ServerService) { }
 
   ngOnInit() {
   }
@@ -29,12 +29,12 @@ export class ProdutoComponent implements OnInit {
 
 RealizaOferta(oferta:number,id:number){
   this.oferta = {"id":id,"oferta":oferta};
-  this.ProdutoService.realizaOferta(this.oferta).subscribe(() =>{alert(`Oferta realizada com sucesso.`)})
+  this.ServerService.realizaOferta(this.oferta).subscribe(() =>{alert(`Oferta realizada com sucesso.`)})
  }
 
-RealizaIncremento(id:number){
+RealizaOfertaIncremento(id:number){
   this.incremento = {"id":id};
-  this.ProdutoService.realizaIncremento(this.incremento).subscribe(() => {alert(`Oferta por lance mínimo realizada com sucesso`)})
+  this.ServerService.realizaOfertaIncremento(this.incremento).subscribe(() => {alert(`Oferta por lance mínimo realizada com sucesso`)})
 }
 
 }

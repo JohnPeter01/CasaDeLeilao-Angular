@@ -1,11 +1,12 @@
 <div *ngIf ="produto">
+  <div class="jumbotron jumbotron-fluid">
   <!-- Property Binding-->
   <!-- Dados fornecidos pelo meu component -->
   {{produto.nome}}<br>
   Valor Atual: R$<span>{{produto.valorAtual}}</span><br>
   Lance Minimo: R$<span>{{produto.incOmissao}}</span><br>
   <div>
-    <img src = "data:image/jpg;base64,{{produto.foto}}" class="img-fluid" alt="responsive image">
+    <img style="max-height:300px;max-width: 300px"src = "data:image/jpg;base64,{{produto.foto}}" class="img-fluid" alt="responsive image">
   </div>
   <div [ngSwitch]="produto.estado">
   <!-- 
@@ -19,13 +20,14 @@
               <small id="emailHelp" class="form-text text-muted">Ofertas devem ser maiores ou iguais ao valor atual somado do valor de incremento</small>
             </div>
             <button type="submit" (click)="RealizaOferta(iptOferta.value, produto.id)" class="btn btn-primary">Ofertar</button>
-            <button type="submit" (click)="RealizaIncremento(produto.id)" class="btn btn-primary">Ofertar por lance mínimo</button>
+            <button type="submit" (click)="RealizaOfertaIncremento(produto.id)" class="btn btn-primary">Ofertar por lance mínimo</button>
           </form>
     </div>
     <div *ngSwitchCase = "'FECHADO'">
         <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Negociações Encerradas</button>
     </div>
   </div>
+</div>
 </div>
 
 <div class="jumbotron jumbotron-fluid" *ngIf = "!produto" >
