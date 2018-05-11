@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Produto } from './produto.model';
+import { Ofertas } from '../ofertas.model';
+import { ProdutoService } from '../produto.service';
+import { Incremento } from '../incremento.model';
+import { OfertasComponent } from '../ofertas.component';
 
 @Component({
   selector: 'fl-produto',
@@ -8,12 +12,12 @@ import { Produto } from './produto.model';
 export class ProdutoComponent implements OnInit {
 
   @Input() produto:Produto;
-  foto:File;
+  incremento:Incremento;
+  oferta:Ofertas; 
   
-  constructor() { }
+  constructor(private ProdutoService:ProdutoService) { }
 
   ngOnInit() {
-    this.foto = this.blobToFile(this.produto.foto,'foto.png');
   }
 
   AllowNumbersOnly(e) {
@@ -23,11 +27,14 @@ export class ProdutoComponent implements OnInit {
     }
   }
 
-  blobToFile = (theBlob: Blob, fileName:string): File => {
-    var b: any = theBlob;
-    b.lastModifiedDate = new Date();
-    b.name = fileName;
-    return <File>theBlob;
+RealizaOferta(oferta:number,id:number){
+  this.oferta = {"id":id,"oferta":oferta};
+  this.ProdutoService.realizaOferta(this.oferta).subscribe(() =>{alert(`Oferta realizada com sucesso.`)})
+ }
+
+RealizaIncremento(id:number){
+  this.incremento = {"id":id};
+  this.ProdutoService.realizaIncremento(this.incremento).subscribe(() => {alert(`Oferta por lance mínimo realizada com sucesso`)})
 }
 
 }

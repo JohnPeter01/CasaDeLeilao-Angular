@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
 import {ROUTES} from './app.routes';
 import { CadastroService } from './cadastro/cadastro.service';
 import { BuscaComponent } from './busca/busca.component';
+import { Incremento } from './ofertas/incremento.model'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { BuscaComponent } from './busca/busca.component';
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ProdutoService,CadastroService],
+  providers: [ProdutoService,CadastroService,Incremento],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
