@@ -8,7 +8,7 @@ import { ServerService } from '../server.service';
 })
 export class CadastroComponent implements OnInit {
 
-hidden:any;
+foto:any;
 
   constructor(private serverService:ServerService) { }
 
@@ -28,13 +28,13 @@ hidden:any;
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-          this.hidden = reader.result.split(',')[1]
+          this.foto = reader.result.split(',')[1]
       };
     }
   }
 
   RealizaCadastro(cadastro:ProdutoCadastro){
-   cadastro.foto = this.hidden;
+   cadastro.foto = this.foto;
     cadastro.limiteVenda = cadastro.limiteVenda + ":00.00Z"
     this.serverService.realizaCadastro(cadastro).subscribe(() =>{alert(`Cadastro concluido com sucesso.`)})
   }

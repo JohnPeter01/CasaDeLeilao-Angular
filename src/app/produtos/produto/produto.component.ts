@@ -3,7 +3,6 @@ import { Produto } from './produto.model';
 import { Ofertas } from '../ofertas.model';
 import { ServerService } from '../../server.service';
 import { Incremento } from '../incremento.model';
-import { OfertasComponent } from '../ofertas.component';
 
 @Component({
   selector: 'fl-produto',

@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-      <label for="valIncremento">Data:</label>
+      <label for="valIncremento">Data:</label>  
       <input type="datetime-local" class="form-control" [class.is-valid] = "iptlimiteVenda.valid && (iptlimiteVenda.dirty||iptlimiteVenda.touched)"  
                                                name="limiteVenda" placeholder="Valor a ser incrementado a cada oferta."  #iptlimiteVenda ="ngModel" ngModel>
       <div class="valid-feedback">OK</div>

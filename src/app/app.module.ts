@@ -8,13 +8,12 @@ import { RouterModule } from '@angular/router';
 
 //Components
 import { AppComponent } from './app.component';
-import { BuscaComponent } from './busca/busca.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { OfertasComponent } from './ofertas/ofertas.component';
-import { ProdutoComponent } from './ofertas/produto/produto.component';
+import { ProdutosComponent } from './produtos/produtos.component';
+import { ProdutoComponent } from './produtos/produto/produto.component';
 
 //Service
 import { ServerService } from './server.service';
@@ -26,11 +25,11 @@ import {ROUTES} from './app.routes';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    OfertasComponent,
+    ProdutosComponent,
     ProdutoComponent,
     CadastroComponent,
     FooterComponent,
-    BuscaComponent,
+    ProdutosComponent,
   ],
   imports: [
     BrowserModule,

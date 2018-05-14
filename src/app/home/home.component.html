@@ -1,8 +1,15 @@
-<div class="container-fluid">
-<div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default">Busca</span>
+<div class="container container-fluid">
+  <form #form = "ngForm">
+      <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Busca</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Busca</div>
+            </div>
+            <input type="text" class="form-control" name="name" ngModel>
+          </div>
         </div>
-        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-      </div>
-      </div>
+        <input type="submit" (click)="RealizaBusca(form.value.name)" class="btn btn-primary">
+  </form>
+  </div>
+
